@@ -1,0 +1,15 @@
+{
+  "name": "semantic-html-extraction-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "import": "node src/import.mjs",
+    "verify": "node src/import.mjs --verify-only",
+    "build": "node src/build.mjs",
+    "test": "node --test tests/data.test.mjs",
+    "serve": "node src/serve.mjs"
+  }
+}
