@@ -1,0 +1,11 @@
+{
+  "url": "https://www.edikka.com/docbd/data/semantic-html-extraction-v1.2.1.zip",
+  "doi": "https://doi.org/10.5281/zenodo.22867103",
+  "file": "semantic-html-extraction-v1.2.1.zip",
+  "sha256": "34e823e1cb395c50ae6cf87ed56fac75c80aee8dfe2d273aede87893d1199fbe",
+  "sha256_source": "Edikka published Zenodo deposit checksum, independently matched against the public ZIP on 2026-10-01",
+  "package_version": "1.2.1",
+  "protocol_version": "1.2.0",
+  "evaluation_version": "2.0.0",
+  "imported_on": "2026-10-01"
+}
