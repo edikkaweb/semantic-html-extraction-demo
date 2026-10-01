@@ -23,6 +23,7 @@ export const tools = [
 // The archive SHA-256 is checked BEFORE parsing; each member is checked against its manifest.
 export function readPackage(bytes) {
   assert.equal(hash(bytes), pin.sha256, 'ZIP SHA-256 mismatch: refusing import (expected pin is not changed)');
+  assert.equal(crypto.createHash('md5').update(bytes).digest('hex'), pin.zenodo_md5, 'Published Zenodo MD5 mismatch');
   let end = bytes.length - 22;
   while (end >= Math.max(0, bytes.length - 65557) && bytes.readUInt32LE(end) !== 0x06054b50) end--;
   assert(end >= 0, 'ZIP end record missing');
