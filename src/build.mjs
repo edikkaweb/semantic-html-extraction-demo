@@ -6,10 +6,21 @@ const {archive,data,bytes} = await importData();
 const dist=path.join(root,'dist');
 // Only this demo's generated dist is replaced. Original files are never modified.
 fs.rmSync(dist,{recursive:true,force:true});
-const put=(name,content)=>{const p=path.join(dist,name);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,content);};
+const put=(name,content)=>{const p=path.join(dist,name);fs.mkdirSync(path.dirname(p),{recursive:true});if(name.endsWith('.html') && typeof content==='string') {
+  if(name==='404.html') content=content.replace('</head>','<meta name="robots" content="noindex"></head>');
+  else {
+    const rootUrl='https://edikkaweb.github.io/semantic-html-extraction-demo/';
+    const en=/^<html lang="en"/m.test(content);
+    const opposite=name==='index.html'?'index-en.html':name==='index-en.html'?'index.html':name.replace(/(^|\/)(fr|en)-/,(_,prefix,language)=>prefix+(language==='fr'?'en':'fr')+'-');
+    const url=file=>rootUrl+(file==='index.html'?'':file);
+    const fr=en?opposite:name, english=en?name:opposite;
+    content=content.replace('</head>',`<link rel="canonical" href="${url(name)}"><link rel="alternate" hreflang="fr" href="${url(fr)}"><link rel="alternate" hreflang="en" href="${url(english)}"><link rel="alternate" hreflang="x-default" href="${url(fr)}"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:url" content="${url(name)}"><meta property="og:image" content="https://edikkaweb.github.io/assets/semantic-html-extraction-demo.jpg"></head>`);
+  }
+}
+fs.writeFileSync(p,content);};
 put('assets/style.css',fs.readFileSync(path.join(root,'src/style.css')));
 put('assets/app.js',fs.readFileSync(path.join(root,'src/app.js')));
-put('assets/favicon.svg','<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#0c1a24"/><text x="6" y="24" font-family="Arial,sans-serif" font-size="26" font-weight="bold" fill="#d8e58a">e</text></svg>');
+put('assets/favicon.svg',"<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 270\"><rect width=\"400\" height=\"270\" rx=\"28\" fill=\"#0c1a24\"/><path transform=\"translate(18 19)\" fill=\"#d8e58a\" d=\"M168 100.38v16H17v99h202l-16 16H0v-131ZM187.01.38h62.78a115.5 115.5 0 0 1 0 231H224l16-16h9.79a99.5 99.5 0 0 0 0-199h-62.78ZM0 .38h168v16H0Z\"/></svg>");
 put('.nojekyll','');
 put('originals/'+data.provenance.file,bytes);
 for(const [name,buffer] of archive.files) put(rawPath(name),buffer);

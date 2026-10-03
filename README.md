@@ -7,6 +7,8 @@ Démonstration publique d’Edikka / Bertrand Morel. **Interface 1.0.0**, biling
 - [Article source](https://www.edikka.com/insights/developpement-web/accessibilite-seo-ia-html-semantique)
 - [Paquet public 1.2.1](https://www.edikka.com/docbd/data/semantic-html-extraction-v1.2.1.zip) · [référence permanente](https://doi.org/10.5281/zenodo.22867103)
 
+![Aperçu de la démonstration Edikka](docs/preview.jpg)
+
 ## Démarrage
 
 Node.js 22 ou version ultérieure. Le build n’a aucune dépendance npm et n’utilise pas le réseau.
@@ -92,3 +94,7 @@ Displayed verdicts come only from revised `results.json` (evaluation 2.0.0, pack
 The supplementary eight-page corpus is non-causal and non-representative. Both unstable newspaper4k outputs for the English AI article are retained. Evaluator counter-tests are not new extractions. The separate JavaScript experiment is not an autonomous-agent test.
 
 See [reproduction instructions](docs/REPRODUCTION.md), [test scope](docs/TESTING.md), the [English instrument](https://www.edikka.com/en/library#instrument-semantic-html-extraction), and the [permanent package record](https://doi.org/10.5281/zenodo.22867103). New demo code is MIT; original Edikka materials retain CC BY 4.0 within the original notice’s scope and third-party rights remain unchanged.
+
+[Contribuer / Contributing](CONTRIBUTING.md) · [Toutes les démonstrations / All experiments](https://edikkaweb.github.io/)
+
+La détection automatique de GitHub peut afficher « Other » : le fichier LICENSE conserve les exclusions des archives, composants tiers et marques. Le code original reste sous MIT dans le périmètre indiqué. / GitHub may show “Other”; the existing licence scopes and exclusions remain authoritative.
